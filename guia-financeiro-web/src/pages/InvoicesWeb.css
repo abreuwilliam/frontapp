@@ -1,0 +1,161 @@
+.container {
+  max-width: 600px;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: #f8f9fd;
+  font-family: Arial, sans-serif;
+}
+
+.title {
+  font-size: 24px;
+  font-weight: bold;
+  color: #1a1a1a;
+  margin-bottom: 20px;
+}
+
+/* Tabs */
+.tab-container {
+  display: flex;
+  background-color: #e0e0e0;
+  border-radius: 12px;
+  padding: 4px;
+  margin-bottom: 20px;
+}
+
+.tab {
+  flex: 1;
+  padding: 12px;
+  text-align: center;
+  cursor: pointer;
+  font-weight: 600;
+  color: #757575;
+  border: none;
+  background: none;
+}
+
+.tab.active {
+  background-color: #fff;
+  border-radius: 10px;
+  font-weight: bold;
+  color: #2a0957;
+}
+
+/* Cards */
+.card {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 16px;
+  margin-bottom: 15px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.card-paid {
+  opacity: 0.8;
+  border-left: 5px solid #27ae60;
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.month-text {
+  font-size: 16px;
+  color: #666;
+  text-transform: capitalize;
+}
+
+.paid-check {
+  color: #27ae60;
+  font-weight: bold;
+}
+
+.amount-text {
+  font-size: 26px;
+  font-weight: bold;
+  margin: 12px 0;
+  color: #1a1a1a;
+}
+
+.empty-text {
+  text-align: center;
+  color: #999;
+  margin-top: 40px;
+  font-size: 16px;
+}
+
+/* Buttons */
+.pay-button {
+  background-color: #29055c;
+  color: #fff;
+  font-weight: bold;
+  padding: 14px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+/* Modal */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0,0,0,0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  background-color: #fff;
+  border-radius: 25px;
+  padding: 25px;
+  width: 90%;
+  max-width: 400px;
+}
+
+.modal-content h2 {
+  margin-bottom: 20px;
+}
+
+.info-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  background-color: #f1f3f9;
+  padding: 15px;
+  border-radius: 12px;
+}
+
+select {
+  width: 100%;
+  padding: 12px;
+  border-radius: 12px;
+  margin-bottom: 25px;
+  border: 1px solid #ddd;
+  background-color: #f1f3f9;
+}
+
+.confirm-btn {
+  background-color: #27ae60;
+  color: #fff;
+  padding: 16px;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.cancel-btn {
+  background-color: #e74c3c;
+  color: #fff;
+  padding: 14px;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  width: 100%;
+}

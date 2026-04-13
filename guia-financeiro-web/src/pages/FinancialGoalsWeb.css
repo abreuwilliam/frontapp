@@ -1,0 +1,216 @@
+:root {
+  --primary: #6366f1;
+  --bg: #f8fafc;
+  --white: #ffffff;
+  --text-main: #0f172a;
+  --text-sub: #64748b;
+  --success: #10b981;
+  --danger: #f43f5e;
+  --border: #e2e8f0;
+}
+
+.container {
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 0 20px;
+  font-family: 'Inter', sans-serif;
+  color: var(--text-main);
+}
+
+.header-web {
+  margin-bottom: 30px;
+}
+
+.title {
+  font-size: 32px;
+  font-weight: 800;
+  margin: 0;
+}
+
+.subtitle {
+  color: var(--text-sub);
+  margin-top: 5px;
+}
+
+.add-button {
+  width: 100%;
+  padding: 16px;
+  border: 2px dashed var(--border);
+  border-radius: 16px;
+  background: var(--white);
+  color: var(--primary);
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s;
+  margin-bottom: 30px;
+}
+
+.add-button:hover {
+  background: #f1f5f9;
+  border-color: var(--primary);
+}
+
+.card {
+  background: var(--white);
+  padding: 24px;
+  border-radius: 20px;
+  margin-bottom: 16px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+  border: 1px solid var(--border);
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.goal-info h3 {
+  margin: 0;
+  font-size: 18px;
+}
+
+.amounts {
+  font-size: 14px;
+  color: var(--text-sub);
+}
+
+.icon-btn {
+  background: #f8fafc;
+  border: none;
+  padding: 8px;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-left: 8px;
+  transition: 0.2s;
+}
+
+.icon-btn.delete { color: var(--danger); }
+.icon-btn:hover { background: #e2e8f0; }
+
+.progress-container {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 20px 0;
+}
+
+.progress-bar {
+  flex: 1;
+  height: 10px;
+  background: #f1f5f9;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: var(--success);
+  transition: width 0.5s ease-out;
+}
+
+.percent-text {
+  font-weight: 700;
+  font-size: 13px;
+  min-width: 40px;
+}
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+}
+
+.deposit-btn {
+  background: #ecfdf5;
+  color: #059669;
+  border: 1px solid #a7f3d0;
+  padding: 8px 16px;
+  border-radius: 10px;
+  font-weight: 700;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.ai-btn {
+  background: #eef2ff;
+  color: var(--primary);
+  border: 1px solid #c7d2fe;
+  padding: 8px 16px;
+  border-radius: 25px;
+  font-weight: 700;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+/* MODAL */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.7);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal-box {
+  background: var(--white);
+  padding: 32px;
+  border-radius: 24px;
+  width: 90%;
+  max-width: 450px;
+}
+
+.input-group label {
+  display: block;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-sub);
+  margin-bottom: 6px;
+  margin-top: 15px;
+}
+
+input, select {
+  width: 100%;
+  padding: 12px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: #f8fafc;
+  outline: none;
+  box-sizing: border-box;
+}
+
+input:focus { border-color: var(--primary); }
+
+.modal-actions {
+  margin-top: 25px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.save-btn {
+  background: var(--text-main);
+  color: white;
+  padding: 14px;
+  border: none;
+  border-radius: 12px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.cancel-btn {
+  background: none;
+  border: none;
+  color: var(--text-sub);
+  cursor: pointer;
+  font-size: 13px;
+}
+
+.loader {
+  text-align: center;
+  padding: 100px;
+  color: var(--text-sub);
+  font-weight: 600;
+}
