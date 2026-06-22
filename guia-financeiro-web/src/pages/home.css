@@ -1,10 +1,11 @@
 .home-container {
   padding: 24px;
-  background: #f4f6f8;
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+  color: #f8fafc;
   min-height: 100vh;
   max-width: 420px;
   margin: auto;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   overflow-x: hidden; /* 🔥 evita cortar conteúdo */
 }
 
@@ -14,16 +15,19 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  color: #22d3ee;
+  font-weight: 600;
 }
 
 /* 🔥 STREAK */
 .streak {
-  background: #eef2f6;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.08);
   padding: 8px 16px;
   border-radius: 999px;
   font-size: 13px;
   margin-bottom: 24px;
-  color: #64748b;
+  color: #34d399; /* Verde esmeralda para dar destaque ao ganho */
   font-weight: 600;
 
   display: flex;              /* 🔥 corrige emoji desalinhado */
@@ -37,37 +41,51 @@
   font-size: 30px;
   font-weight: 800;
   margin-bottom: 24px;
-  color: #0f172a;
+  background: linear-gradient(to right, #ffffff, #cbd5e1);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
   letter-spacing: -0.5px;
 
   text-align: center;
   word-break: break-word; /* 🔥 evita sumir nome */
 }
 
-/* 💰 CARD PRINCIPAL */
-.card {
-  background: #1e293b;
+/* 💰 CARD PRINCIPAL & SALDO */
+.card, .saldo-card {
+  background: rgba(30, 41, 59, 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   color: white;
   padding: 26px;
   border-radius: 26px;
   margin-bottom: 22px;
-  box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.25);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 }
 
-.label {
-  opacity: 0.6;
+.label, .saldo-label {
+  color: #94a3b8;
   font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 4px;
 }
 
-.balance {
-  font-size: 36px;
+.balance, .saldo-valor {
+  font-size: 38px;
   font-weight: 800;
-  margin-top: 6px;
+  background: linear-gradient(to right, #22d3ee, #34d399);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  letter-spacing: -1px;
 }
 
-/* 🤖 IA */
+/* 🤖 IA CARD */
 .ai-card {
-  background: #ffffff;
+  background: linear-gradient(135deg, rgba(6, 182, 212, 0.15) 0%, rgba(5, 149, 105, 0.15) 100%);
+  border: 1px solid rgba(34, 211, 238, 0.25);
   padding: 18px;
   border-radius: 20px;
   display: flex;
@@ -75,40 +93,47 @@
   align-items: center;
   margin-bottom: 22px;
   cursor: pointer;
-  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.ai-card:hover {
+  transform: translateY(-2px);
+  background: linear-gradient(135deg, rgba(6, 182, 212, 0.2) 0%, rgba(5, 149, 105, 0.2) 100%);
 }
 
 .ai-title {
   font-weight: 700;
   font-size: 15px;
+  color: #22d3ee; /* Destaca que é uma feature de IA */
 }
 
 .ai-sub {
   font-size: 13px;
-  color: #64748b;
+  color: #94a3b8;
   margin-top: 2px;
 }
 
-/* 📦 BOX */
+/* 📦 BOX CONTEUDO (Metas, faturas, etc) */
 .box {
-  background: #ffffff;
+  background: rgba(30, 41, 59, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.05);
   padding: 18px;
   border-radius: 20px;
   margin-bottom: 18px;
-  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.04);
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
 }
 
 .box-header {
   display: flex;
   justify-content: space-between;
   font-weight: 600;
-  color: #334155;
+  color: #e2e8f0;
 }
 
-/* 📊 PROGRESS */
+/* 📊 PROGRESS BAR */
 .progress {
   height: 8px;
-  background: #e5e7eb;
+  background: rgba(255, 255, 255, 0.1);
   border-radius: 999px;
   margin: 12px 0;
   overflow: hidden;
@@ -116,6 +141,7 @@
 
 .progress-value {
   height: 100%;
+  background: linear-gradient(to right, #06b6d4, #34d399);
   border-radius: 999px;
   transition: 0.4s;
 }
@@ -123,18 +149,18 @@
 /* INFO */
 .info {
   font-size: 13px;
-  color: #64748b;
+  color: #94a3b8;
 }
 
-/* 💳 CARTAO */
+/* 💳 CARTAO TEXT */
 .cartao {
   font-size: 22px;
   font-weight: 800;
   margin-top: 6px;
-  color: #0f172a;
+  color: #ffffff;
 }
 
-/* 📱 GRID */
+/* 📱 GRID DE BOTÕES COUTOUTS */
 .grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -142,173 +168,39 @@
   margin-top: 10px;
 }
 
-.grid button {
+.grid button, .full-btn {
   padding: 18px;
   border-radius: 18px;
-  border: none;
-  background: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.05);
   cursor: pointer;
   font-weight: 700;
   font-size: 15px;
-  color: #334155;
+  color: #e2e8f0;
+  transition: all 0.2s ease;
 
   display: flex;              /* 🔥 melhora layout com emoji */
   align-items: center;
   justify-content: center;
   gap: 6px;
-
-  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.04);
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
 }
 
-/* 🔥 FULL BUTTON (CORRIGIDO) */
+.grid button:hover, .full-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.2);
+  transform: translateY(-1px);
+}
+
+/* 🔥 FULL BUTTON */
 .full-btn {
   width: 100%;
-  padding: 18px;
   margin-top: 14px;
-  border-radius: 18px;
-  background: #ffffff;
-  border: none;
-  cursor: pointer;
-  font-weight: 700;
-  font-size: 15px;
-
-  display: flex;              /* 🔥 ESSENCIAL */
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-
   white-space: normal;        /* 🔥 permite texto aparecer */
   overflow: visible;
-
-  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.04);
 }
 
-/* PRIMARY */
-.primary-btn {
-  width: 100%;
-  padding: 18px;
-  margin-top: 14px;
-  border-radius: 18px;
-  background: #0f172a;
-  color: white;
-  font-weight: 800;
-  cursor: pointer;
-  border: none;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.2);
-}
-
-/* LOGOUT */
-.logout {
-  margin-top: 24px;
-  width: 100%;
-  background: none;
-  border: none;
-  color: #94a3b8;
-  cursor: pointer;
-  font-size: 14px;
-}
-
-/* 💰 SALDO */
-.saldo-card {
-  background: #1e293b;
-  padding: 30px;
-  border-radius: 26px;
-  margin-bottom: 22px;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.15);
-}
-
-.saldo-label {
-  color: rgba(255, 255, 255, 0.6);
-  font-size: 14px;
-  font-weight: 600;
-  margin-bottom: 4px;
-}
-
-.saldo-valor {
-  font-size: 38px;
-  font-weight: 800;
-  color: #ffffff;
-  letter-spacing: -1px;
-}
-
-/* MODAL */
-.modal-title {
-  display: block !important;
-  visibility: visible !important;
-  color: #0f172a !important;
-  font-size: 22px;
-  font-weight: 800;
-  text-align: center;
-  margin-bottom: 25px;
-  margin-top: 0;
-}
-
-.modal-title span, .modal-title i {
-  margin-right: 8px;
-}
-
-.modal-box {
-  background: #ffffff !important;
-  padding: 30px;
-  border-radius: 28px;
-  width: 90%;
-  max-width: 400px;
-  position: relative;
-  z-index: 1001;
-}
-
-.modal-overlay {
-  background: rgba(15, 23, 42, 0.8) !important;
-}
-
-/* 📱 RESPONSIVO */
-@media (max-width: 480px) {
-
-  .home-container {
-    padding: 16px;
-  }
-
-  .welcome {
-    font-size: 22px;
-  }
-
-  .saldo-valor {
-    font-size: 30px;
-  }
-
-  .grid button {
-    font-size: 13px;
-    padding: 14px;
-  }
-
- .full-btn {
-  width: 100%;
-  padding: 18px;
-  margin-top: 14px;
-  border-radius: 18px;
-  background: #ffffff;
-  border: none;
-  cursor: pointer;
-  font-weight: 700;
-  font-size: 15px;
-  color: #0f172a;
-
-  display: block;
-  text-align: center;
-
-  white-space: normal;   /* 🔥 ESSENCIAL */
-  overflow: visible;     /* 🔥 ESSENCIAL */
-
-  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.04);
-}
 .full-btn .icon {
   flex-shrink: 0; /* 🔥 impede o emoji de esmagar o texto */
 }
@@ -317,7 +209,97 @@
   overflow: hidden;
   text-overflow: ellipsis;
 }
-.full-btn {
-  min-width: 0;
+
+/* PRIMARY ACTION BUTTON */
+.primary-btn {
+  width: 100%;
+  padding: 18px;
+  margin-top: 14px;
+  border-radius: 18px;
+  background: linear-gradient(135deg, #06b6d4 0%, #059669 100%);
+  color: white;
+  font-weight: 800;
+  font-size: 15px;
+  cursor: pointer;
+  border: none;
+  transition: opacity 0.2s ease, transform 0.1s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0px 8px 20px rgba(6, 182, 212, 0.25);
 }
+
+.primary-btn:hover {
+  opacity: 0.95;
+  transform: translateY(-1px);
+}
+
+/* LOGOUT */
+.logout {
+  margin-top: 32px;
+  width: 100%;
+  background: none;
+  border: none;
+  color: #64748b;
+  cursor: pointer;
+  font-size: 14px;
+  transition: color 0.2s ease;
+}
+
+.logout:hover {
+  color: #ef4444; /* Vermelho suave ao passar o mouse para indicar saída */
+}
+
+/* MODAL */
+.modal-overlay {
+  background: rgba(15, 23, 42, 0.8) !important;
+  backdrop-filter: blur(8px);
+}
+
+.modal-box {
+  background: #1e293b !important;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 30px;
+  border-radius: 28px;
+  width: 90%;
+  max-width: 400px;
+  position: relative;
+  z-index: 1001;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+}
+
+.modal-title {
+  display: block !important;
+  visibility: visible !important;
+  color: #ffffff !important;
+  font-size: 22px;
+  font-weight: 800;
+  text-align: center;
+  margin-bottom: 25px;
+  margin-top: 0;
+}
+
+/* 📱 RESPONSIVO */
+@media (max-width: 480px) {
+  .home-container {
+    padding: 16px;
+  }
+
+  .welcome {
+    font-size: 24px;
+  }
+
+  .saldo-valor, .balance {
+    font-size: 32px;
+  }
+
+  .grid button {
+    font-size: 13px;
+    padding: 14px;
+  }
+  
+  .full-btn {
+    display: flex; /* Mantido flex para manter consistência dos ícones */
+    padding: 16px;
+  }
 }

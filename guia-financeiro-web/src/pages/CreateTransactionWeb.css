@@ -1,8 +1,13 @@
+/* ==========================================================================
+   🎨 CONFIGURAÇÃO DE AMBIENTE CLARO (Tema Inter / Indigo)
+   ========================================================================== */
+
 .container {
   max-width: 480px;
   margin: 0 auto;
   padding: 20px;
   font-family: 'Inter', sans-serif;
+  background-color: #FAFAFA;
 }
 
 .title {
@@ -13,17 +18,18 @@
   margin-bottom: 20px;
 }
 
-/* --- AMOUNT --- */
+/* --- AMOUNT (Display de Valor) --- */
 .amount-container {
   display: flex;
   justify-content: center;
   align-items: center;
-  background: #FFF;
+  background: #FFFFFF;
   padding: 25px;
   border-radius: 24px;
   border: 1px solid #F1F5F9;
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
   margin-bottom: 30px;
+  color: #000;
 }
 
 .currency {
@@ -36,15 +42,17 @@
 .amount-input {
   font-size: 44px;
   font-weight: 800;
-  color: #0F172A;
+  color: #000 !important;
+  -webkit-text-fill-color: #000 !important;
   border: none;
   outline: none;
   width: 180px;
+  background: transparent;
 }
 
-/* --- FORM CARD --- */
+/* --- FORM CARD (Campos de Entrada) --- */
 .card-form {
-  background: #FFF;
+  background: #FFFFFF;
   padding: 24px;
   border-radius: 28px;
   border: 1px solid #F1F5F9;
@@ -69,15 +77,22 @@
   padding: 14px;
   font-size: 16px;
   font-weight: 600;
+  color: #0F172A;
   outline: none;
   box-sizing: border-box;
 }
 
 .input-field:focus, .select-field:focus {
   border-color: #6366F1;
+  background: #FFFFFF;
 }
 
-/* --- TABS --- */
+.select-field option {
+  background: #FFFFFF;
+  color: #0F172A;
+}
+
+/* --- TABS (Forma de Pagamento) --- */
 .tab-container {
   display: flex;
   background: #F1F5F9;
@@ -96,65 +111,118 @@
   color: #64748B;
   background: transparent;
   cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.tab-btn:hover {
+  color: #0F172A;
 }
 
 .tab-btn.active {
-  background: #FFF;
+  background: #FFFFFF;
   color: #6366F1;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
 }
 
-/* --- CATEGORIES --- */
+/* --- NOVO DESIGN DE CATEGORIAS --- */
 .label-section {
   display: block;
   font-size: 12px;
   font-weight: 800;
-  color: #94A3B8;
-  margin: 30px 0 15px;
+  color: #64748B;
+  margin: 35px 0 20px;
   text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.category-container-block {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
 }
 
 .category-group {
-  margin-bottom: 18px;
+  display: flex;
+  flex-direction: column;
 }
 
 .group-title {
-  font-size: 13px;
-  font-weight: 800;
-  color: #475569;
-  margin-bottom: 10px;
-  display: block;
-}
-
-.items-row {
+  font-size: 14px;
+  font-weight: 700;
+  color: #1E293B;
+  margin-bottom: 12px;
   display: flex;
-  flex-wrap: wrap;
+  align-items: center;
   gap: 8px;
 }
 
-.category-item {
-  background: #FFF;
+.group-icon-badge {
+  background: #E2E8F0;
+  padding: 4px 6px;
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+/* Grid simétrico de 2 colunas para os itens internos */
+.items-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+
+/* Estilo Card Moderno para os botões das subcategorias */
+button.category-card-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #FFFFFF;
   border: 1px solid #E2E8F0;
-  padding: 8px 14px;
-  border-radius: 12px;
-  font-size: 12px;
-  font-weight: 700;
-  color: #64748B;
-  text-transform: capitalize;
+  padding: 12px 14px;
+  border-radius: 16px;
   cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  text-align: left;
+  width: 100%;
 }
 
-.category-item.active {
-  background: #0F172A;
-  color: #FFF;
-  border-color: #0F172A;
+button.category-card-item:hover {
+  background: #F8FAFC;
+  border-color: #CBD5E1;
+  transform: translateY(-1px);
 }
 
-/* --- BUTTON --- */
+.item-emoji {
+  font-size: 18px;
+}
+
+/* Força o texto interno a herdar a visibilidade correta */
+.item-text {
+  font-size: 13px;
+  font-weight: 600;
+  color: #475569;
+  text-transform: capitalize;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Estado Ativo Premium (Destacado em Roxo para casar com o App) */
+button.category-card-item.active {
+  background: #EEF2FF;
+  border-color: #6366F1;
+  box-shadow: 0 0 0 1px #6366F1;
+}
+
+button.category-card-item.active .item-text {
+  color: #4338CA;
+  font-weight: 700;
+}
+
+/* --- BUTTON (Salvar Transação) --- */
 .save-btn {
   width: 100%;
   background: #0F172A;
-  color: #FFF;
+  color: #FFFFFF;
   padding: 18px;
   border-radius: 20px;
   border: none;
@@ -162,10 +230,18 @@
   font-weight: 800;
   text-transform: uppercase;
   cursor: pointer;
-  margin-top: 20px;
-  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+  margin-top: 35px;
+  box-shadow: 0 8px 15px rgba(15, 23, 42, 0.15);
+  transition: all 0.2s ease;
+}
+
+.save-btn:hover {
+  background: #1E293B;
+  transform: translateY(-1px);
 }
 
 .save-btn:disabled {
   opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
 }

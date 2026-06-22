@@ -128,128 +128,130 @@ export default function FinancialGoalsWeb() {
   if (loading) return <div className="loader">Buscando suas metas...</div>;
 
   return (
-    <div className="container">
-      <header className="header-web">
-        <h1 className="title">Financeiro</h1>
-        <p className="subtitle">Gerencie seus objetivos de longo prazo</p>
-      </header>
+    <div className="page-wrapper"> {/* 🌌 Envoltório completo para o fundo escuro */}
+      <div className="container">
+        <header className="header-web">
+          <h1 className="title">Financeiro</h1>
+          <p className="subtitle">Gerencie seus objetivos de longo prazo</p>
+        </header>
 
-      <button className="add-button" onClick={() => setModalVisible(true)}>
-        <span className="icon-plus">⊕</span> Criar Objetivo
-      </button>
+        <button className="add-button" onClick={() => setModalVisible(true)}>
+          <span className="icon-plus">⊕</span> Criar Objetivo
+        </button>
 
-      <div className="goals-grid">
-        {goals.map((goal) => {
-          const percentage = Math.min((goal.currentAmount / goal.targetAmount) * 100, 100);
+        <div className="goals-grid">
+          {goals.map((goal) => {
+            const percentage = Math.min((goal.currentAmount / goal.targetAmount) * 100, 100);
 
-          return (
-            <div key={goal.id} className="card">
-              <div className="card-header">
-                <div className="goal-info">
-                  <h3>{goal.name}</h3>
-                  <span className="amounts">
-                    R$ {goal.currentAmount.toLocaleString()} / R$ {goal.targetAmount.toLocaleString()}
-                  </span>
+            return (
+              <div key={goal.id} className="card">
+                <div className="card-header">
+                  <div className="goal-info">
+                    <h3>{goal.name}</h3>
+                    <span className="amounts">
+                      R$ {goal.currentAmount.toLocaleString()} / R$ {goal.targetAmount.toLocaleString()}
+                    </span>
+                  </div>
+
+                  <div className="actions">
+                    <button className="icon-btn" onClick={() => {
+                      setSelectedGoalId(goal.id);
+                      setName(goal.name);
+                      setTargetAmount(goal.targetAmount);
+                      setCurrentAmount(goal.currentAmount);
+                      setIsEditing(true);
+                      setModalVisible(true);
+                    }}>✎</button>
+                    <button className="icon-btn delete" onClick={() => handleDelete(goal.id)}>🗑</button>
+                  </div>
                 </div>
 
-                <div className="actions">
-                  <button className="icon-btn" onClick={() => {
+                <div className="progress-container">
+                  <div className="progress-bar">
+                    <div className="progress-fill" style={{ width: `${percentage}%` }}></div>
+                  </div>
+                  <span className="percent-text">{percentage.toFixed(0)}%</span>
+                </div>
+
+                <div className="footer">
+                  <button className="deposit-btn" onClick={() => {
                     setSelectedGoalId(goal.id);
                     setName(goal.name);
-                    setTargetAmount(goal.targetAmount);
-                    setCurrentAmount(goal.currentAmount);
-                    setIsEditing(true);
-                    setModalVisible(true);
-                  }}>✎</button>
-                  <button className="icon-btn delete" onClick={() => handleDelete(goal.id)}>🗑</button>
+                    setTransferModalVisible(true);
+                  }}>
+                    ↗ Depositar
+                  </button>
+
+                  <button 
+                    className={`ai-btn ${aiLoading === goal.id ? 'loading' : ''}`} 
+                    onClick={() => handleGetAiAdvice(goal.id)}
+                    disabled={aiLoading === goal.id}
+                  >
+                    {aiLoading === goal.id ? "..." : "⚡ Consultar IA"}
+                  </button>
                 </div>
               </div>
+            );
+          })}
+        </div>
 
-              <div className="progress-container">
-                <div className="progress-bar">
-                  <div className="progress-fill" style={{ width: `${percentage}%` }}></div>
-                </div>
-                <span className="percent-text">{percentage.toFixed(0)}%</span>
+        {/* MODAL CRUD */}
+        {modalVisible && (
+          <div className="modal-overlay">
+            <div className="modal-box">
+              <h2 className="modal-title">{isEditing ? "Editar" : "Novo"} Objetivo</h2>
+              <div className="input-group">
+                <label>Nome do Objetivo</label>
+                <input placeholder="Ex: Viagem, Carro..." value={name} onChange={e => setName(e.target.value)} />
+                
+                <label>Valor Alvo (R$)</label>
+                <input type="number" placeholder="0.00" value={targetAmount} onChange={e => setTargetAmount(e.target.value)} />
+                
+                <label>Já possuo (R$)</label>
+                <input type="number" placeholder="0.00" value={currentAmount} onChange={e => setCurrentAmount(e.target.value)} />
               </div>
 
-              <div className="footer">
-                <button className="deposit-btn" onClick={() => {
-                  setSelectedGoalId(goal.id);
-                  setName(goal.name);
-                  setTransferModalVisible(true);
-                }}>
-                  ↗ Depositar
-                </button>
-
-                <button 
-                  className={`ai-btn ${aiLoading === goal.id ? 'loading' : ''}`} 
-                  onClick={() => handleGetAiAdvice(goal.id)}
-                  disabled={aiLoading === goal.id}
-                >
-                  {aiLoading === goal.id ? "..." : "⚡ Consultar IA"}
-                </button>
+              <div className="modal-actions">
+                <button className="save-btn" onClick={handleSave}>Confirmar</button>
+                <button className="cancel-btn" onClick={closeModal}>Cancelar</button>
               </div>
             </div>
-          );
-        })}
+          </div>
+        )}
+
+        {/* MODAL TRANSFER */}
+        {transferModalVisible && (
+          <div className="modal-overlay">
+            <div className="modal-box">
+              <h2 className="modal-title">Depositar em {name}</h2>
+              <div className="input-group">
+                <label>Origem do dinheiro</label>
+                <select value={selectedAccountId} onChange={(e) => setSelectedAccountId(e.target.value)}>
+                  <option value="">Selecione uma conta</option>
+                  {accounts.map(acc => (
+                    <option key={acc.id} value={acc.id}>
+                      {acc.name} (Saldo: R$ {acc.balance.toFixed(2)})
+                    </option>
+                  ))}
+                </select>
+
+                <label>Valor do depósito</label>
+                <input
+                  type="number"
+                  placeholder="R$ 0,00"
+                  value={amountToTransfer}
+                  onChange={(e) => setAmountToTransfer(e.target.value)}
+                />
+              </div>
+
+              <div className="modal-actions">
+                <button className="save-btn" onClick={handleTransfer}>Confirmar Depósito</button>
+                <button className="cancel-btn" onClick={() => setTransferModalVisible(false)}>Voltar</button>
+              </div>
+            </div>
+          </div>
+        )}
       </div>
-
-      {/* MODAL CRUD */}
-      {modalVisible && (
-        <div className="modal-overlay">
-          <div className="modal-box">
-            <h2>{isEditing ? "Editar" : "Novo"} Objetivo</h2>
-            <div className="input-group">
-              <label>Nome do Objetivo</label>
-              <input placeholder="Ex: Viagem, Carro..." value={name} onChange={e => setName(e.target.value)} />
-              
-              <label>Valor Alvo (R$)</label>
-              <input type="number" placeholder="0.00" value={targetAmount} onChange={e => setTargetAmount(e.target.value)} />
-              
-              <label>Já possuo (R$)</label>
-              <input type="number" placeholder="0.00" value={currentAmount} onChange={e => setCurrentAmount(e.target.value)} />
-            </div>
-
-            <div className="modal-actions">
-              <button className="save-btn" onClick={handleSave}>Confirmar</button>
-              <button className="cancel-btn" onClick={closeModal}>Cancelar</button>
-            </div>
-          </div>
-        </div>
-      )}
-
-      {/* MODAL TRANSFER */}
-      {transferModalVisible && (
-        <div className="modal-overlay">
-          <div className="modal-box">
-            <h2>Depositar em {name}</h2>
-            <div className="input-group">
-              <label>Origem do dinheiro</label>
-              <select value={selectedAccountId} onChange={(e) => setSelectedAccountId(e.target.value)}>
-                <option value="">Selecione uma conta</option>
-                {accounts.map(acc => (
-                  <option key={acc.id} value={acc.id}>
-                    {acc.name} (Saldo: R$ {acc.balance.toFixed(2)})
-                  </option>
-                ))}
-              </select>
-
-              <label>Valor do depósito</label>
-              <input
-                type="number"
-                placeholder="R$ 0,00"
-                value={amountToTransfer}
-                onChange={(e) => setAmountToTransfer(e.target.value)}
-              />
-            </div>
-
-            <div className="modal-actions">
-              <button className="save-btn" onClick={handleTransfer}>Confirmar Depósito</button>
-              <button className="cancel-btn" onClick={() => setTransferModalVisible(false)}>Voltar</button>
-            </div>
-          </div>
-        </div>
-      )}
-    </div>
+    </div> /* Fechamento correto da page-wrapper */
   );
 }

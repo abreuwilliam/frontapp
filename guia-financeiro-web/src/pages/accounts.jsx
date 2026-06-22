@@ -15,6 +15,8 @@ export default function Accounts() {
   // Estados dos Modais
   const [showTransfer, setShowTransfer] = useState(false);
   const [showDeposit, setShowDeposit] = useState(false);
+  const [showEdit, setShowEdit] = useState(false); // Modal de Edição
+  const [editingAccount, setEditingAccount] = useState(null);
 
   const [transferData, setTransferData] = useState({ 
     amount: "", 
@@ -43,8 +45,6 @@ export default function Accounts() {
       ]);
 
       setAccounts(accountsRes.data || []);
-      
-      // Captura o valor independente do formato da API
       const valorApi = typeof totalRes.data === 'object' ? 
         (totalRes.data.balance ?? totalRes.data.total ?? 0) : totalRes.data;
       
@@ -73,6 +73,34 @@ export default function Accounts() {
     } catch { alert("Erro ao criar conta."); }
   };
 
+  // --- NOVA FUNÇÃO: UPDATE ---
+  const handleUpdate = async () => {
+    if (!editingAccount.name || !editingAccount.balance) return alert("Preencha tudo!");
+    try {
+      await api.patch(`/account/${editingAccount.id}`, {
+        name: editingAccount.name,
+        type: editingAccount.type,
+        balance: Number(editingAccount.balance.toString().replace(",", ".")),
+        userId: localStorage.getItem("user_id")
+      });
+      setShowEdit(false);
+      alert("Conta atualizada!");
+      loadAccounts();
+    } catch { alert("Erro ao atualizar conta."); }
+  };
+
+  // --- NOVA FUNÇÃO: DELETE ---
+  const handleDelete = async (id) => {
+    if (window.confirm("Tem certeza? Isso excluirá o histórico de transações desta conta.")) {
+      try {
+        await api.delete(`/account/${id}`);
+        loadAccounts();
+      } catch {
+        alert("Erro: Contas com histórico complexo podem não ser excluídas.");
+      }
+    }
+  };
+
   const handleDeposit = async () => {
     if (!depositData.amount || !depositData.destinationAccount) return alert("Preencha tudo!");
     try {
@@ -91,7 +119,7 @@ export default function Accounts() {
 
   const handleTransfer = async () => {
     if (!transferData.amount || !transferData.sourceAccount || !transferData.destinationAccount) {
-      return alert("Preencha todos os campos da transferência!");
+      return alert("Preencha todos os campos!");
     }
     try {
       await api.post("/transaction", {
@@ -112,7 +140,7 @@ export default function Accounts() {
 
   return (
     <div className="accounts-container">
-      <h1 className="page-title">🏦 Suas Contas</h1>
+      <h1 className="page-title"> Suas Contas</h1>
 
       <div className="total-card">
         <p className="total-label">Patrimônio Total</p>
@@ -146,12 +174,45 @@ export default function Accounts() {
               <span className="item-name">{acc.name}</span>
               <span className="item-type">{acc.type}</span>
             </div>
-            <span className="item-balance">
-              R$ {Number(acc.balance).toLocaleString("pt-BR", { minimumFractionDigits: 2 })}
-            </span>
+            <div className="item-right">
+              <span className="item-balance">
+                R$ {Number(acc.balance).toLocaleString("pt-BR", { minimumFractionDigits: 2 })}
+              </span>
+              <div className="item-actions">
+                <button className="btn-edit" onClick={() => { setEditingAccount(acc); setShowEdit(true); }}>Editar</button>
+                <button className="btn-delete" onClick={() => handleDelete(acc.id)}>Excluir</button>
+              </div>
+            </div>
           </div>
         ))}
       </div>
+
+      {/* MODAL EDITAR */}
+      {showEdit && (
+        <div className="modal-overlay">
+          <div className="modal-box">
+            <h3 className="modal-title">Editar Conta</h3>
+            <input 
+              value={editingAccount.name} 
+              onChange={(e) => setEditingAccount({...editingAccount, name: e.target.value})} 
+            />
+            <input 
+              value={editingAccount.balance} 
+              onChange={(e) => setEditingAccount({...editingAccount, balance: e.target.value})} 
+            />
+            <select 
+              value={editingAccount.type} 
+              onChange={(e) => setEditingAccount({...editingAccount, type: e.target.value})}
+            >
+              <option value="CURRENT">Conta Corrente</option>
+              <option value="SAVINGS">Poupança</option>
+              <option value="INVESTMENT">Investimento</option>
+            </select>
+            <button className="btn-primary" onClick={handleUpdate}>Salvar</button>
+            <button className="btn-cancel" onClick={() => setShowEdit(false)}>Cancelar</button>
+          </div>
+        </div>
+      )}
 
       {/* MODAL DEPÓSITO */}
       {showDeposit && (
@@ -159,9 +220,6 @@ export default function Accounts() {
           <div className="modal-box">
             <h3 className="modal-title">📥 Depósito</h3>
             <input 
-              type="text"
-              inputMode="decimal"
-              autoComplete="off"
               placeholder="R$ 0,00" 
               value={depositData.amount} 
               onChange={(e) => setDepositData({...depositData, amount: e.target.value})} 
@@ -180,12 +238,8 @@ export default function Accounts() {
       {showTransfer && (
         <div className="modal-overlay">
           <div className="modal-box">
-            <h3 className="modal-title">🔃 Transferencia</h3>
+            <h3 className="modal-title">🔃 Transferência</h3>
             <input 
-              type="text"
-              inputMode="decimal"
-              autoComplete="off"
-              name="amount-transfer"
               placeholder="R$ 0,00" 
               value={transferData.amount} 
               onChange={(e) => setTransferData({...transferData, amount: e.target.value})} 

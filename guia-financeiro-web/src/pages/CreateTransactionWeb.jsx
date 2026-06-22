@@ -2,6 +2,17 @@ import React, { useState, useEffect } from "react";
 import { api } from "../services/api";
 import "./CreateTransactionWeb.css";
 
+// Mapeamento opcional de ícones específicos para os subitens ficarem lindos
+const CATEGORY_ICONS = {
+  ALIMENTACAO: "🍕", SUPERMERCADO: "🛒", RESTAURANTE: "🍔", PADARIA: "🥐", BEBIDA_ALCOOLICA: "🍺",
+  COMBUSTIVEL: "⛽", UBER: "🚗", MANUTENCAO_VEICULO: "🔧", TRANSPORTE_PUBLICO: "🚌",
+  ALUGUEL: "🔑", CONDOMINIO: "🏢", ENERGIA: "💡", AGUA: "🚰", INTERNET: "🌐", GAS: "🔥",
+  CINEMA: "🍿", STREAMING: "📺", VIAGEM: "✈️", SHOW: "🎸", HOBBIES: "🎨", LIVROS: "📚",
+  FARMACIA: "🏥", PLANO_DE_SAUDE: "🛡️", CONSULTA_MEDICA: "🩺", ACADEMIA: "💪",
+  CURSO: "🎓", PRESENTES: "🎁", ELETRONICOS: "💻", ROUPAS: "👕", PAGAMENTO_FATURA: "📄", FILHOS: "👶", PETS: "🐶",
+  OUTROS: "📦"
+};
+
 const CATEGORY_GROUPS = [
   { label: "Alimentação", icon: "🍴", items: ["ALIMENTACAO", "SUPERMERCADO", "RESTAURANTE", "PADARIA", "BEBIDA_ALCOOLICA"] },
   { label: "Transporte", icon: "🚗", items: ["COMBUSTIVEL", "UBER", "MANUTENCAO_VEICULO", "TRANSPORTE_PUBLICO"] },
@@ -84,13 +95,17 @@ export default function CreateTransactionWeb() {
 
       await api.post("/transaction", payload);
       alert("Gasto registrado com sucesso!");
-      // O usuário pode redirecionar aqui, ex: window.history.back();
     } catch (error) {
       console.error("Erro ao salvar:", error);
       alert("Falha ao salvar transação.");
     } finally {
       setLoading(false);
     }
+  };
+
+  // Função para formatar o texto limpo das subcategorias
+  const formatCategoryName = (text) => {
+    return text.replace(/_/g, " ").toLowerCase();
   };
 
   return (
@@ -166,21 +181,33 @@ export default function CreateTransactionWeb() {
         )}
       </div>
 
+      {/* SEÇÃO DE CATEGORIAS REMODELADA */}
       <label className="label-section">Selecione a Categoria</label>
-      <div className="category-grid">
+      <div className="category-container-block">
         {CATEGORY_GROUPS.map((group) => (
           <div key={group.label} className="category-group">
-            <span className="group-title">{group.icon} {group.label}</span>
-            <div className="items-row">
-              {group.items.map((item) => (
-                <button
-                  key={item}
-                  className={`category-item ${category === item ? "active" : ""}`}
-                  onClick={() => setCategory(item)}
-                >
-                  {item.replace("_", " ").toLowerCase()}
-                </button>
-              ))}
+            <span className="group-title">
+              <span className="group-icon-badge">{group.icon}</span>
+              {group.label}
+            </span>
+            <div className="items-grid">
+              {group.items.map((item) => {
+                const isActive = category === item;
+                return (
+                  <button
+                    key={item}
+                    className={`category-card-item ${isActive ? "active" : ""}`}
+                    onClick={() => setCategory(item)}
+                  >
+                    <span className="item-emoji">
+                      {CATEGORY_ICONS[item] || "📦"}
+                    </span>
+                    <span className="item-text">
+                      {formatCategoryName(item)}
+                    </span>
+                  </button>
+                );
+              })}
             </div>
           </div>
         ))}

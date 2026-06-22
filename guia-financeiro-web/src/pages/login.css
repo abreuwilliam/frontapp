@@ -1,7 +1,8 @@
 body {
   margin: 0;
-  font-family: Arial, sans-serif;
-  background: #f8fafc;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
+  color: #f8fafc;
 }
 
 .login-container {
@@ -10,79 +11,136 @@ body {
   align-items: center;
   justify-content: center;
   padding: 20px;
-  background: #f8fafc;
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
 }
 
 .login-box {
   width: 100%;
   max-width: 400px;
-  background: white;
-  padding: 32px;
-  border-radius: 20px;
-  border: 1px solid #e5e7eb;
+  background: rgba(30, 41, 59, 0.7);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  padding: 40px 32px;
+  border-radius: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
 }
 
 .login-title {
-  font-size: 28px;
-  font-weight: bold;
+  font-size: 32px;
+  font-weight: 800;
   text-align: center;
-  margin-bottom: 10px;
+  margin-top: 0;
+  margin-bottom: 8px;
+  background: linear-gradient(to right, #22d3ee, #34d399);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  letter-spacing: -0.5px;
+ 
 }
 
 .login-subtitle {
   text-align: center;
-  color: #64748b;
-  margin-bottom: 30px;
+  color: #94a3b8;
+  font-size: 14px;
+  margin-bottom: 36px;
 }
 
 .login-label {
   font-size: 12px;
-  font-weight: bold;
-  color: #94a3b8;
+  font-weight: 600;
+  color: #cbd5e1;
   text-transform: uppercase;
+  letter-spacing: 0.5px;
+  display: block;
 }
-
 .login-input {
   width: 100%;
-  padding: 14px;
+  padding: 14px 16px;
   margin-top: 8px;
-  margin-bottom: 20px;
+  margin-bottom: 24px;
   border-radius: 12px;
-  border: 2px solid #f1f5f9;
-  background: #f8fafc;
-  font-size: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  
+  /* Mudança aqui: Fundo bem mais claro por padrão para o texto escrito aparecer sempre */
+  background: rgba(255, 255, 255, 0.15); 
+  color: #ffffff; /* Texto digitado ou preenchido sempre branco puro */
+  
+  font-size: 15px;
+  box-sizing: border-box;
+  transition: all 0.2s ease;
 }
+
+.login-input:focus {
+  outline: none;
+  border-color: #22d3ee;
+  background: rgba(255, 255, 255, 0.25); /* Ilumina ainda mais quando clica dentro */
+  box-shadow: 0 0 0 3px rgba(34, 211, 238, 0.15);
+}
+
+.login-input::placeholder {
+  color: #cbd5e1; /* Cor do placeholder levemente mais clara para não sumir no fundo */
+}
+
 
 .login-button {
   width: 100%;
   padding: 14px;
-  background: black;
+  background: linear-gradient(135deg, #06b6d4 0%, #059669 100%);
   color: white;
   border: none;
   border-radius: 12px;
-  font-weight: bold;
-  margin-bottom: 10px;
+  font-weight: 600;
+  font-size: 15px;
   cursor: pointer;
+  transition: transform 0.1s ease, opacity 0.2s ease;
+  box-shadow: 0 4px 12px rgba(6, 182, 212, 0.2);
 }
 
 .login-button:hover {
-  opacity: 0.9;
+  opacity: 0.95;
+  transform: translateY(-1px);
+}
+
+.login-button:active {
+  transform: translateY(0);
 }
 
 .demo-button {
   width: 100%;
   padding: 14px;
-  background: #e5e7eb;
-  color: #111;
-  border: none;
+  background: rgba(255, 255, 255, 0.05);
+  color: #e2e8f0;
+  border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 12px;
-  font-weight: bold;
+  font-weight: 600;
+  font-size: 15px;
+  margin-top: 12px;
   cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.demo-button:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.2);
 }
 
 .footer-text {
-  margin-top: 20px;
+  margin-top: 28px;
   text-align: center;
-  color: #64748b;
+  color: #94a3b8;
   font-size: 14px;
+}
+
+.link-text {
+  color: #22d3ee;
+  font-weight: 600;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.link-text:hover {
+  color: #34d399;
+  text-decoration: underline;
 }

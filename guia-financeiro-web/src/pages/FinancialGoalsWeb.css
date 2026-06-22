@@ -1,216 +1,293 @@
-:root {
-  --primary: #6366f1;
-  --bg: #f8fafc;
-  --white: #ffffff;
-  --text-main: #0f172a;
-  --text-sub: #64748b;
-  --success: #10b981;
-  --danger: #f43f5e;
-  --border: #e2e8f0;
-}
+/* ==========================================================================
+   🎨 CONFIGURAÇÃO DE AMBIENTE ESCURO CYBERPUNK (Tema Home / Slate / Cyan)
+   ========================================================================== */
 
 .container {
-  max-width: 800px;
-  margin: 40px auto;
-  padding: 0 20px;
-  font-family: 'Inter', sans-serif;
-  color: var(--text-main);
-}
-
-.header-web {
-  margin-bottom: 30px;
+  max-width: 420px; /* Alinhado com a largura máxima da Home */
+  margin: 0 auto;
+  padding: 24px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+  color: #f8fafc;
+  min-height: 100vh;
+  overflow-x: hidden;
 }
 
 .title {
-  font-size: 32px;
+  font-size: 30px;
   font-weight: 800;
-  margin: 0;
+  text-align: center;
+  margin-bottom: 24px;
+  background: linear-gradient(to right, #ffffff, #cbd5e1);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  letter-spacing: -0.5px;
 }
 
-.subtitle {
-  color: var(--text-sub);
-  margin-top: 5px;
+/* --- AMOUNT (Display de Valor Gigante) --- */
+.amount-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(30, 41, 59, 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  padding: 25px;
+  border-radius: 26px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.25);
+  margin-bottom: 22px;
 }
 
-.add-button {
+.currency {
+  font-size: 24px;
+  font-weight: 800;
+  color: #22d3ee;
+  margin-right: 10px;
+}
+
+.amount-input {
+  font-size: 42px;
+  font-weight: 800;
+  color: #ffffff;
+  border: none;
+  outline: none;
   width: 100%;
-  padding: 16px;
-  border: 2px dashed var(--border);
-  border-radius: 16px;
-  background: var(--white);
-  color: var(--primary);
-  font-weight: 700;
-  cursor: pointer;
-  transition: all 0.2s;
-  margin-bottom: 30px;
+  background: transparent;
 }
 
-.add-button:hover {
-  background: #f1f5f9;
-  border-color: var(--primary);
+.amount-input::placeholder {
+  color: #475569;
 }
 
-.card {
-  background: var(--white);
+/* --- FORM CARD (Campos de Entrada) --- */
+.card-form {
+  background: rgba(30, 41, 59, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.05);
   padding: 24px;
   border-radius: 20px;
-  margin-bottom: 16px;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
-  border: 1px solid var(--border);
+  margin-bottom: 22px;
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
 }
 
-.card-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-}
-
-.goal-info h3 {
-  margin: 0;
-  font-size: 18px;
-}
-
-.amounts {
-  font-size: 14px;
-  color: var(--text-sub);
-}
-
-.icon-btn {
-  background: #f8fafc;
-  border: none;
-  padding: 8px;
-  border-radius: 8px;
-  cursor: pointer;
-  margin-left: 8px;
-  transition: 0.2s;
-}
-
-.icon-btn.delete { color: var(--danger); }
-.icon-btn:hover { background: #e2e8f0; }
-
-.progress-container {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  margin: 20px 0;
-}
-
-.progress-bar {
-  flex: 1;
-  height: 10px;
-  background: #f1f5f9;
-  border-radius: 10px;
-  overflow: hidden;
-}
-
-.progress-fill {
-  height: 100%;
-  background: var(--success);
-  transition: width 0.5s ease-out;
-}
-
-.percent-text {
-  font-weight: 700;
-  font-size: 13px;
-  min-width: 40px;
-}
-
-.footer {
-  display: flex;
-  justify-content: space-between;
-}
-
-.deposit-btn {
-  background: #ecfdf5;
-  color: #059669;
-  border: 1px solid #a7f3d0;
-  padding: 8px 16px;
-  border-radius: 10px;
-  font-weight: 700;
-  font-size: 13px;
-  cursor: pointer;
-}
-
-.ai-btn {
-  background: #eef2ff;
-  color: var(--primary);
-  border: 1px solid #c7d2fe;
-  padding: 8px 16px;
-  border-radius: 25px;
-  font-weight: 700;
-  font-size: 13px;
-  cursor: pointer;
-}
-
-/* MODAL */
-.modal-overlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(15, 23, 42, 0.7);
-  backdrop-filter: blur(4px);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 1000;
-}
-
-.modal-box {
-  background: var(--white);
-  padding: 32px;
-  border-radius: 24px;
-  width: 90%;
-  max-width: 450px;
-}
-
-.input-group label {
+.label {
   display: block;
-  font-size: 13px;
-  font-weight: 600;
-  color: var(--text-sub);
-  margin-bottom: 6px;
-  margin-top: 15px;
+  font-size: 12px;
+  font-weight: 700;
+  color: #94a3b8;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin: 18px 0 8px;
 }
 
-input, select {
+.label:first-child {
+  margin-top: 0;
+}
+
+.input-field, .select-field {
   width: 100%;
-  padding: 12px;
-  border-radius: 12px;
-  border: 1px solid var(--border);
-  background: #f8fafc;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  padding: 14px;
+  font-size: 15px;
+  font-weight: 600;
+  color: #e2e8f0;
   outline: none;
   box-sizing: border-box;
+  transition: all 0.2s ease;
 }
 
-input:focus { border-color: var(--primary); }
+.input-field:focus, .select-field:focus {
+  border-color: rgba(34, 211, 238, 0.4);
+  background: rgba(255, 255, 255, 0.08);
+  color: #ffffff;
+}
 
-.modal-actions {
-  margin-top: 25px;
+.input-field::placeholder {
+  color: #64748b;
+}
+
+.select-field option {
+  background: #1e293b;
+  color: #ffffff;
+}
+
+/* --- TABS (Abas Débito/Crédito) --- */
+.tab-container {
+  display: flex;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 18px;
+  padding: 5px;
+  margin-bottom: 10px;
+}
+
+.tab-btn {
+  flex: 1;
+  border: none;
+  padding: 12px;
+  border-radius: 14px;
+  font-weight: 700;
+  font-size: 13px;
+  color: #94a3b8;
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.tab-btn:hover {
+  color: #ffffff;
+}
+
+.tab-btn.active {
+  background: rgba(255, 255, 255, 0.08);
+  color: #22d3ee;
+  font-weight: 800;
+}
+
+/* --- DESIGN DE CATEGORIAS (Grid de 2 Colunas Escuro) --- */
+.label-section {
+  display: block;
+  font-size: 13px;
+  font-weight: 800;
+  color: #94a3b8;
+  margin: 32px 0 18px;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+}
+
+.category-container-block {
   display: flex;
   flex-direction: column;
+  gap: 24px;
+}
+
+.category-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.group-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: #e2e8f0;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.group-icon-badge {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 4px 8px;
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+/* Grid simétrico de 2 colunas */
+.items-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
   gap: 10px;
 }
 
-.save-btn {
-  background: var(--text-main);
-  color: white;
-  padding: 14px;
-  border: none;
-  border-radius: 12px;
-  font-weight: 700;
+/* Estilo Card Moderno para subcategorias */
+button.category-card-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 12px 14px;
+  border-radius: 16px;
   cursor: pointer;
+  transition: all 0.2s ease;
+  text-align: left;
+  width: 100%;
 }
 
-.cancel-btn {
-  background: none;
-  border: none;
-  color: var(--text-sub);
-  cursor: pointer;
+button.category-card-item:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.2);
+  transform: translateY(-1px);
+}
+
+.item-emoji {
+  font-size: 18px;
+}
+
+.item-text {
   font-size: 13px;
+  font-weight: 600;
+  color: #cbd5e1;
+  text-transform: capitalize;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
-.loader {
-  text-align: center;
-  padding: 100px;
-  color: var(--text-sub);
-  font-weight: 600;
+/* Estado Ativo Premium Neon (Cyan e Emerald da home) */
+button.category-card-item.active {
+  background: linear-gradient(135deg, rgba(6, 182, 212, 0.15) 0%, rgba(5, 149, 105, 0.15) 100%) !important;
+  border: 1px solid rgba(34, 211, 238, 0.4) !important;
+  box-shadow: 0 0 12px rgba(34, 211, 238, 0.15);
+}
+
+button.category-card-item.active .item-text {
+  color: #22d3ee;
+  font-weight: 700;
+}
+
+/* --- PRIMARY ACTION BUTTON (Confirmar Transação) --- */
+.save-btn {
+  width: 100%;
+  padding: 18px;
+  margin-top: 32px;
+  border-radius: 18px;
+  background: linear-gradient(135deg, #06b6d4 0%, #059669 100%);
+  color: #ffffff;
+  font-weight: 800;
+  font-size: 15px;
+  cursor: pointer;
+  border: none;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  transition: opacity 0.2s ease, transform 0.1s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0px 8px 20px rgba(6, 182, 212, 0.25);
+}
+
+.save-btn:hover {
+  opacity: 0.95;
+  transform: translateY(-1px);
+}
+
+.save-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+/* --- RESPONSIVIDADE --- */
+@media (max-width: 480px) {
+  .container {
+    padding: 16px;
+  }
+
+  .title {
+    font-size: 24px;
+  }
+
+  .balance, .amount-input {
+    font-size: 32px;
+  }
+
+  .item-text {
+    font-size: 12px;
+  }
 }

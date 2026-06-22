@@ -1,13 +1,21 @@
-/* =============================
-   BASE
-============================= */
+/* ==========================================================================
+   🌌 BLINDAGEM MÁXIMA & BASE CONTRA O FUNDO BRANCO RECORRENTE
+   ========================================================================== */
+.reports-container,
+.reports-container * {
+  /* Alvo em qualquer div, card ou container intruso que tente injetar fundo branco */
+  background-color: transparent; 
+}
+
 .reports-container {
   max-width: 760px;
   margin: 0 auto;
   padding: 40px 20px 60px;
-  background: #f8fafc;
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%) !important;
   min-height: 100vh;
-  font-family: "Segoe UI", sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  color: #f8fafc !important;
+  box-sizing: border-box;
 }
 
 .reports-loader {
@@ -16,12 +24,13 @@
   justify-content: center;
   height: 100vh;
   font-size: 16px;
-  color: #64748b;
+  color: #22d3ee !important;
+  font-weight: 700;
 }
 
-/* =============================
-   HEADER
-============================= */
+/* ==========================================================================
+   🔝 HEADER & BOTÕES
+   ========================================================================== */
 .reports-header {
   display: flex;
   align-items: center;
@@ -33,47 +42,65 @@
   flex: 1;
   font-size: 26px;
   font-weight: 800;
-  color: #0f172a;
+  background: linear-gradient(to right, #ffffff, #cbd5e1) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
   letter-spacing: -0.5px;
   margin: 0;
 }
 
 .btn-primary,
 .btn-secondary {
-  padding: 8px 18px;
+  padding: 10px 20px;
   border-radius: 12px;
-  border: none;
+  border: none !important;
   cursor: pointer;
   font-size: 13px;
   font-weight: 700;
-  transition: opacity 0.2s;
+  transition: all 0.2s ease;
 }
 
 .btn-primary {
-  background: #6366f1;
-  color: #fff;
+  background: linear-gradient(135deg, #06b6d4 0%, #059669 100%) !important;
+  color: #fff !important;
+  box-shadow: 0px 4px 15px rgba(6, 182, 212, 0.25);
+}
+
+.btn-primary:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
 }
 
 .btn-secondary {
-  background: #f1f5f9;
-  color: #475569;
+  background: rgba(255, 255, 255, 0.06) !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  color: #94a3b8 !important;
+}
+
+.btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.12) !important;
+  color: #ffffff !important;
 }
 
 .btn-primary:disabled {
-  opacity: 0.5;
+  opacity: 0.4 !important;
   cursor: not-allowed;
+  transform: none !important;
 }
 
-/* =============================
-   CARD
-============================= */
-.reports-card {
-  background: #fff;
-  border-radius: 24px;
+/* ==========================================================================
+   📊 CARD (Glassmorphic Escuro)
+   ========================================================================== */
+.reports-card, .chart-container-line {
+  background: rgba(30, 41, 59, 0.7) !important;
+  backdrop-filter: blur(14px) !important;
+  -webkit-backdrop-filter: blur(14px) !important;
+  border-radius: 24px !important;
   margin-bottom: 20px;
-  padding: 20px;
-  border: 1px solid #f1f5f9;
-  box-shadow: 0 4px 16px rgba(100, 116, 139, 0.08);
+  padding: 24px !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.25) !important;
+  box-sizing: border-box;
 }
 
 .card-header {
@@ -82,25 +109,25 @@
   align-items: center;
   cursor: pointer;
   user-select: none;
-  font-size: 16px;
+  font-size: 17px;
   font-weight: 800;
-  color: #1e293b;
+  color: #ffffff !important;
   letter-spacing: -0.3px;
 }
 
 .card-header small {
-  font-size: 11px;
-  color: #94a3b8;
-  font-weight: 500;
+  font-size: 12px;
+  color: #94a3b8 !important;
+  font-weight: 600;
 }
 
 .card-content {
   margin-top: 16px;
 }
 
-/* =============================
-   FLUXO DE CAIXA
-============================= */
+/* ==========================================================================
+   💸 FLUXO DE CAIXA (Entradas e Saídas)
+   ========================================================================== */
 .summary-row {
   display: flex;
   gap: 12px;
@@ -108,8 +135,8 @@
 
 .mini-card {
   flex: 1;
-  background: #f8fafc;
-  border: 1px solid #f1f5f9;
+  background: rgba(255, 255, 255, 0.03) !important;
+  border: 1px solid rgba(255, 255, 255, 0.06) !important;
   border-radius: 18px;
   padding: 16px;
   display: flex;
@@ -122,60 +149,61 @@
   font-weight: 800;
   text-transform: uppercase;
   letter-spacing: 1px;
-  color: #94a3b8;
+  color: #94a3b8 !important;
 }
 
 .value-blue {
-  font-size: 18px;
+  font-size: 20px;
   font-weight: 800;
-  color: #6366f1;
+  color: #22d3ee !important; /* Ciano para fluxos positivos/principais */
 }
 
 .value-red {
-  font-size: 18px;
+  font-size: 20px;
   font-weight: 800;
-  color: #f43f5e;
+  color: #f43f5e !important; /* Rosa/Vermelho vibrante dark */
 }
 
-/* Saldo + Badge de cartão */
+/* Saldo Interno */
 .balance-container {
   margin-top: 16px;
   padding-top: 16px;
-  border-top: 1px solid #f1f5f9;
+  border-top: 1px solid rgba(255, 255, 255, 0.08) !important;
 }
 
 .balance-row {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 10px;
+  margin-bottom: 12px;
 }
 
 .balance-label {
   font-size: 14px;
-  color: #64748b;
+  color: #94a3b8 !important;
   font-weight: 600;
 }
 
 .balance-value {
-  font-size: 20px;
+  font-size: 22px;
   font-weight: 800;
-  color: #0f172a;
+  color: #34d399 !important; /* Saldo destacado em Esmeralda */
 }
 
 .info-badge {
-  background: #f1f5f9;
-  padding: 10px 14px;
-  border-radius: 12px;
-  font-size: 11px;
-  color: #94a3b8;
+  background: rgba(34, 211, 238, 0.06) !important;
+  border: 1px solid rgba(34, 211, 238, 0.15) !important;
+  padding: 12px 16px;
+  border-radius: 14px;
+  font-size: 12px;
+  color: #cbd5e1 !important;
   line-height: 1.5;
   font-weight: 500;
 }
 
-/* =============================
-   CATEGORIAS
-============================= */
+/* ==========================================================================
+   🗂️ CATEGORIAS E PROGRESSO
+   ========================================================================== */
 .category-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -183,8 +211,8 @@
 }
 
 .category-item {
-  background: #f8fafc;
-  border: 1px solid #f1f5f9;
+  background: rgba(255, 255, 255, 0.03) !important;
+  border: 1px solid rgba(255, 255, 255, 0.06) !important;
   border-radius: 18px;
   padding: 14px;
   display: flex;
@@ -195,7 +223,7 @@
 .category-header {
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 8px;
   margin-bottom: 4px;
 }
 
@@ -209,7 +237,7 @@
 .category-name {
   font-size: 11px;
   font-weight: 700;
-  color: #64748b;
+  color: #94a3b8 !important;
   text-transform: uppercase;
   letter-spacing: 0.5px;
 }
@@ -217,19 +245,19 @@
 .category-value {
   font-size: 16px;
   font-weight: 800;
-  color: #0f172a;
+  color: #ffffff !important;
 }
 
 .category-percent {
   font-size: 12px;
-  font-weight: 700;
-  color: #6366f1;
+  font-weight: 800;
+  color: #22d3ee !important;
 }
 
 .progress-bg {
   margin-top: 8px;
-  height: 4px;
-  background: #e2e8f0;
+  height: 6px;
+  background: rgba(255, 255, 255, 0.08) !important;
   border-radius: 99px;
   overflow: hidden;
 }
@@ -238,11 +266,13 @@
   height: 100%;
   border-radius: 99px;
   transition: width 0.4s ease;
+  /* Nota: se a cor for injetada via style inline no React, o gradiente padrão do tema será mantido */
+  background: linear-gradient(90deg, #06b6d4 0%, #34d399 100%);
 }
 
-/* =============================
-   HISTÓRICO
-============================= */
+/* ==========================================================================
+   📜 HISTÓRICO & INSIGHTS
+   ========================================================================== */
 .history-list {
   display: flex;
   flex-direction: column;
@@ -252,45 +282,45 @@
 .history-row {
   display: flex;
   justify-content: space-between;
-  padding: 10px 14px;
-  background: #f8fafc;
+  padding: 12px 16px;
+  background: rgba(255, 255, 255, 0.03) !important;
+  border: 1px solid rgba(255, 255, 255, 0.05) !important;
   border-radius: 12px;
   font-size: 13px;
   font-weight: 600;
-  color: #334155;
+  color: #e2e8f0 !important;
 }
 
-.info-text {
-  font-size: 13px;
-  color: #64748b;
-  margin-top: 12px;
-}
-
-/* =============================
-   ANÁLISE E DICAS
-============================= */
 .insight-row {
   display: flex;
   align-items: center;
-  gap: 10px;
-  padding: 10px 0;
-  border-bottom: 1px solid #f1f5f9;
+  gap: 12px;
+  padding: 12px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06) !important;
   font-size: 14px;
-  color: #334155;
+  color: #e2e8f0 !important;
 }
 
 .insight-row:last-child {
-  border-bottom: none;
+  border-bottom: none !important;
 }
 
 .insight-icon {
   font-size: 18px;
   flex-shrink: 0;
+  color: #22d3ee;
 }
 
-/* =============================
-   SCORE DE SAÚDE
-============================= */
+.info-text {
+  text-align: center;
+  font-size: 14px;
+  color: #94a3b8 !important;
+  margin-top: 12px;
+}
+
+/* ==========================================================================
+   🎯 SCORE DE SAÚDE FINANCEIRA
+   ========================================================================== */
 .health-info {
   display: flex;
   flex-direction: column;
@@ -298,35 +328,37 @@
   gap: 4px;
   margin-bottom: 10px;
   font-size: 13px;
-  color: #64748b;
+  color: #94a3b8 !important;
 }
 
 .health-info strong {
-  color: #1e293b;
+  color: #ffffff !important;
   font-weight: 700;
 }
 
 .health-info small {
   font-size: 11px;
-  color: #94a3b8;
+  color: #64748b !important;
 }
 
 .health-circle {
   width: 130px;
   height: 130px;
   border-radius: 50%;
-  border: 8px solid;
+  border: 8px solid; /* A cor da borda se ajusta via style dinâmico do React */
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   margin: 16px auto;
-  background: #fff;
+  background: rgba(30, 41, 59, 0.5) !important;
+  box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.2);
 }
 
 .health-circle strong {
-  font-size: 32px;
+  font-size: 34px;
   font-weight: 900;
+  color: #ffffff !important;
   line-height: 1;
 }
 
@@ -334,20 +366,22 @@
   font-size: 10px;
   text-transform: uppercase;
   font-weight: 700;
-  color: #94a3b8;
+  color: #94a3b8 !important;
   letter-spacing: 0.5px;
   margin-top: 4px;
 }
 
 .health-hint {
-  font-size: 11px;
-  color: #94a3b8;
+  font-size: 12px;
+  color: #94a3b8 !important;
   text-align: center;
-  margin-bottom: 12px;
+  margin-bottom: 16px;
   line-height: 1.5;
 }
 
-/* Alertas */
+/* ==========================================================================
+   ⚠️ ALERTAS & BADGES
+   ========================================================================== */
 .alert-container {
   display: flex;
   flex-direction: column;
@@ -356,81 +390,52 @@
 }
 
 .alert-badge {
-  padding: 12px;
-  border-radius: 12px;
+  padding: 14px;
+  border-radius: 14px;
   font-size: 13px;
   font-weight: 600;
-  border-left: 4px solid transparent;
+  border-left: 4px solid transparent !important;
 }
 
 .alert-critical {
-  background: #fef2f2;
-  border-left-color: #ef4444;
-  color: #b91c1c;
+  background: rgba(244, 63, 94, 0.08) !important;
+  border-left-color: #f43f5e !important;
+  color: #fda4af !important;
+  border: 1px solid rgba(244, 63, 94, 0.15);
 }
 
 .alert-warning {
-  background: #fffbeb;
-  border-left-color: #f59e0b;
-  color: #b45309;
+  background: rgba(245, 158, 11, 0.08) !important;
+  border-left-color: #f59e0b !important;
+  color: #fde047 !important;
+  border: 1px solid rgba(245, 158, 11, 0.15);
 }
 
 .success-text {
   text-align: center;
-  color: #10b981;
+  color: #34d399 !important;
   font-weight: 700;
   font-size: 14px;
   margin-top: 8px;
 }
 
-/* =============================
-   MISC
-============================= */
 .empty {
-  color: #94a3b8;
+  color: #64748b;
   font-size: 14px;
   text-align: center;
-  padding: 20px 0;
+  padding: 30px 0;
+  font-weight: 500;
 }
 
+/* ==========================================================================
+   📱 RESPONSIVIDADE
+   ========================================================================== */
 @media (max-width: 480px) {
   .category-grid {
     grid-template-columns: 1fr;
   }
 
   .reports-header h1 {
-    font-size: 20px;
+    font-size: 22px;
   }
-}
-.chart-container-line {
-  width: 100%;
-  margin: 20px 0;
-  background: #ffffff;
-  border-radius: 16px;
-  padding: 10px;
-}
-
-.reports-card {
-  background: #ffffff;
-  border-radius: 24px;
-  margin-bottom: 20px;
-  padding: 20px;
-  box-shadow: 0 4px 20px rgba(100, 116, 139, 0.08);
-  border: 1px solid #f1f5f9;
-}
-
-.card-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  cursor: pointer;
-  font-weight: 800;
-  color: #1e293b;
-}
-
-.info-text {
-  text-align: center;
-  font-size: 14px;
-  color: #64748b;
-  margin-top: 10px;
 }

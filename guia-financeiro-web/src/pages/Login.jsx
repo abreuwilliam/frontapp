@@ -7,9 +7,8 @@ export default function Login() {
   const [email, setEmail] = useState("");
   const navigate = useNavigate();
 
-  const handleLogin = async (forcedEmail) => {
-    // Pega o e-mail do input ou do botão demo
-    const emailFinal = (typeof forcedEmail === 'string' ? forcedEmail : email).trim().toLowerCase();
+  const handleLogin = async () => {
+    const emailFinal = email.trim().toLowerCase();
 
     if (!emailFinal) {
       alert("Por favor, insira um e-mail.");
@@ -17,30 +16,22 @@ export default function Login() {
     }
 
     try {
-      // Faz a chamada para a API
       const response = await api.post("/user/login", {
         email: emailFinal,
       });
 
-      // Captura o ID que vem do Banco de Dados (pode ser response.data.id ou response.data)
-      // Ajuste conforme o formato do seu JSON de retorno
       const user = response.data;
       const userId = user.id;
 
       if (userId) {
-        console.log("Login realizado com sucesso! ID do usuário:", userId);
-        
-        // Salva no localStorage para as outras páginas usarem
         localStorage.setItem("user_id", userId);
-        localStorage.setItem("user_email", emailFinal); // Opcional: guardar o e-mail
-        
+        localStorage.setItem("user_email", emailFinal);
         navigate("/home");
       } else {
         alert("Erro ao identificar o ID do usuário.");
       }
     } catch (error) {
       console.error("Erro no login:", error);
-      
       if (error.response && error.response.status === 404) {
         alert("E-mail não cadastrado. Crie uma conta primeiro.");
       } else {
@@ -49,11 +40,17 @@ export default function Login() {
     }
   };
 
+  // Nova função para apenas preencher o campo
+  const preencherDemo = () => {
+    setEmail("demostracao@email.com");
+  };
+
   return (
     <div className="login-container">
       <div className="login-box">
         <h1 className="login-title">Guia de Bolso</h1>
-        <p className="login-subtitle">Sua jornada financeira começa aqui</p>
+        <p className="login-subtitle">Essa é uma versão web de um Aplicativo</p>
+       
 
         <label className="login-label">E-mail</label>
         <input
@@ -65,22 +62,27 @@ export default function Login() {
           onKeyDown={(e) => e.key === 'Enter' && handleLogin()}
         />
 
-        <button onClick={() => handleLogin()} className="login-button">
+        <button onClick={handleLogin} className="login-button">
           Entrar na conta
         </button>
 
-        {/* Botão de Demonstração agora dinâmico */}
+        {/* Botão Demo alterado para apenas preencher o estado */}
         <button
-          onClick={() => handleLogin("demostracao@email.com")}
+          onClick={preencherDemo}
           className="demo-button"
           style={{ 
             marginTop: '12px', 
             backgroundColor: '#64748b', 
             color: 'white',
-            fontWeight: 'bold' 
+            fontWeight: 'bold',
+            width: '100%',
+            padding: '12px',
+            borderRadius: '8px',
+            border: 'none',
+            cursor: 'pointer'
           }}
         >
-          Entrar em modo demo
+          Usar conta demo
         </button>
 
         <p className="footer-text">

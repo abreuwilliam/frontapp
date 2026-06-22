@@ -1,25 +1,36 @@
+/* 🌌 BLINDAGEM MÁXIMA CONTRA O FUNDO BRANCO */
 .container {
-  max-width: 600px;
-  margin: 20px auto;
-  padding: 20px;
-  background-color: #f8f9fd;
-  font-family: Arial, sans-serif;
+  max-width: 440px; /* Alinhado ao padrão da outra tela para consistência */
+  width: 100%;
+  margin: 0 auto;
+  padding: 40px 20px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  color: #f8fafc !important;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
 }
 
+/* 🔝 TITULO DA TELA */
 .title {
-  font-size: 24px;
-  font-weight: bold;
-  color: #1a1a1a;
-  margin-bottom: 20px;
+  font-size: 32px;
+  font-weight: 800;
+  background: linear-gradient(to right, #ffffff, #cbd5e1);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin: 0 0 25px 0;
+  letter-spacing: -1px;
+  text-align: center;
 }
 
-/* Tabs */
+/* 📑 TABS (Alternador de Abas) */
 .tab-container {
   display: flex;
-  background-color: #e0e0e0;
-  border-radius: 12px;
+  background-color: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 14px;
   padding: 4px;
-  margin-bottom: 20px;
+  margin-bottom: 25px;
 }
 
 .tab {
@@ -27,135 +38,260 @@
   padding: 12px;
   text-align: center;
   cursor: pointer;
-  font-weight: 600;
-  color: #757575;
+  font-weight: 700;
+  font-size: 14px;
+  color: #94a3b8;
   border: none;
   background: none;
+  transition: all 0.2s ease;
+}
+
+.tab:hover {
+  color: #ffffff;
 }
 
 .tab.active {
-  background-color: #fff;
+  background-color: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
   border-radius: 10px;
-  font-weight: bold;
-  color: #2a0957;
+  font-weight: 800;
+  color: #22d3ee; /* Destaque em ciano para a aba ativa */
 }
 
-/* Cards */
+/* 📊 CARDS (Glassmorphic Escuro) */
 .card {
-  background-color: #fff;
+  background: rgba(30, 41, 59, 0.7) !important;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   padding: 20px;
-  border-radius: 16px;
-  margin-bottom: 15px;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  border-radius: 26px;
+  margin-bottom: 16px;
+  box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
 }
 
+/* Estado de Pago */
 .card-paid {
-  opacity: 0.8;
-  border-left: 5px solid #27ae60;
+  opacity: 0.65;
+  border-left: 4px solid #34d399 !important; /* Borda lateral esmeralda */
 }
 
 .card-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  width: 100%;
 }
 
 .month-text {
-  font-size: 16px;
-  color: #666;
+  font-size: 14px;
+  color: #94a3b8;
+  font-weight: 600;
   text-transform: capitalize;
 }
 
 .paid-check {
-  color: #27ae60;
-  font-weight: bold;
+  color: #34d399;
+  font-weight: 800;
+  font-size: 14px;
+  letter-spacing: 0.5px;
 }
 
 .amount-text {
-  font-size: 26px;
-  font-weight: bold;
-  margin: 12px 0;
-  color: #1a1a1a;
+  font-size: 32px;
+  font-weight: 800;
+  margin: 14px 0;
+  background: linear-gradient(to right, #22d3ee, #34d399);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  letter-spacing: -1px;
 }
 
 .empty-text {
   text-align: center;
-  color: #999;
+  color: #64748b;
   margin-top: 40px;
-  font-size: 16px;
+  font-size: 15px;
+  font-weight: 500;
 }
 
-/* Buttons */
+/* 🔀 BOTÕES DA TELA */
 .pay-button {
-  background-color: #29055c;
-  color: #fff;
-  font-weight: bold;
-  padding: 14px;
-  border: none;
-  border-radius: 10px;
+  background: rgba(6, 182, 212, 0.08) !important;
+  color: #22d3ee !important;
+  border: 1px solid rgba(6, 182, 212, 0.2) !important;
+  font-weight: 700;
+  font-size: 14px;
+  padding: 12px;
+  border-radius: 12px;
   cursor: pointer;
+  transition: all 0.2s ease;
+  width: 100%;
+  box-sizing: border-box;
 }
 
-/* Modal */
+.pay-button:hover {
+  background: rgba(6, 182, 212, 0.18) !important;
+  color: #ffffff !important;
+  transform: translateY(-1px);
+}
+
+/* 🪟 BLINDAGEM DOS MODAIS */
 .modal-overlay {
   position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(0,0,0,0.6);
+  inset: 0;
+  background: rgba(15, 23, 42, 0.8) !important;
+  backdrop-filter: blur(8px);
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
+  z-index: 1000;
 }
 
 .modal-content {
-  background-color: #fff;
-  border-radius: 25px;
-  padding: 25px;
+  background: #1e293b !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  padding: 32px;
+  border-radius: 28px;
   width: 90%;
-  max-width: 400px;
+  max-width: 380px;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5) !important;
+  box-sizing: border-box;
+  color: #ffffff;
 }
 
 .modal-content h2 {
-  margin-bottom: 20px;
+  font-size: 22px;
+  font-weight: 800;
+  color: #ffffff;
+  text-align: center;
+  margin-bottom: 24px;
 }
 
+/* Linha de resumo interno do modal */
 .info-row {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   margin-bottom: 20px;
-  background-color: #f1f3f9;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
   padding: 15px;
-  border-radius: 12px;
+  border-radius: 14px;
+  font-size: 15px;
+  color: #e2e8f0;
 }
 
+/* Campos de Seleção (Dropdowns) */
 select {
   width: 100%;
-  padding: 12px;
-  border-radius: 12px;
+  padding: 14px;
+  border-radius: 14px;
   margin-bottom: 25px;
-  border: 1px solid #ddd;
-  background-color: #f1f3f9;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.05);
+  color: #ffffff;
+  font-size: 15px;
+  outline: none;
+  box-sizing: border-box;
+  transition: all 0.2s;
 }
 
+select:focus {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(34, 211, 238, 0.4);
+}
+
+select option {
+  background: #1e293b;
+  color: #ffffff;
+}
+
+/* Botões de Ação do Modal */
 .confirm-btn {
-  background-color: #27ae60;
-  color: #fff;
+  background: linear-gradient(135deg, #06b6d4 0%, #059669 100%) !important;
+  color: #ffffff;
+  font-weight: 800;
+  font-size: 15px;
   padding: 16px;
   border: none;
-  border-radius: 12px;
+  border-radius: 18px;
   cursor: pointer;
   width: 100%;
-  margin-bottom: 10px;
+  margin-bottom: 12px;
+  box-shadow: 0px 8px 20px rgba(6, 182, 212, 0.25);
+  transition: all 0.2s ease;
+}
+
+.confirm-btn:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
 }
 
 .cancel-btn {
-  background-color: #e74c3c;
-  color: #fff;
-  padding: 14px;
+  background: none !important;
   border: none;
+  color: #64748b;
+  font-weight: 700;
+  font-size: 14px;
+  padding: 12px;
   border-radius: 12px;
   cursor: pointer;
   width: 100%;
+  transition: color 0.2s ease;
+}
+
+.cancel-btn:hover {
+  color: #f43f5e;
+}
+/* ✨ AJUSTE ADICIONAL PARA AS TABS JSX */
+button.tab {
+  outline: none !important;
+  -webkit-tap-highlight-color: transparent; /* Remove o flash cinza no mobile */
+}
+
+button.tab:focus {
+  outline: none !important;
+}
+/* 🛠️ CORREÇÃO CIRÚRGICA E BLINDAGEM DO TAB-CONTAINER */
+div.tab-container {
+  background: rgba(255, 255, 255, 0.06) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  display: flex !important;
+  border-radius: 14px !important;
+  padding: 4px !important;
+  margin-bottom: 25px !important;
+}
+
+/* Força os botões não ativos a ficarem com fundo transparente e texto cinza */
+div.tab-container button.tab {
+  background: transparent !important;
+  background-color: transparent !important;
+  color: #94a3b8 !important;
+  border: none !important;
+  outline: none !important;
+  font-weight: 700 !important;
+  padding: 12px !important;
+  transition: all 0.2s ease !important;
+  box-shadow: none !important;
+}
+
+/* Efeito de hover nos botões não ativos */
+div.tab-container button.tab:hover {
+  color: #ffffff !important;
+}
+
+/* Força a aba ATIVA a ganhar o fundo sutilmente claro e texto ciano */
+div.tab-container button.tab.active {
+  background: rgba(255, 255, 255, 0.1) !important;
+  background-color: rgba(255, 255, 255, 0.1) !important;
+  backdrop-filter: blur(4px) !important;
+  -webkit-backdrop-filter: blur(4px) !important;
+  color: #22d3ee !important; /* Ciano vibrante */
+  border-radius: 10px !important;
+  font-weight: 800 !important;
 }
